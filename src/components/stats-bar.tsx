@@ -10,59 +10,32 @@ function formatDuration(seconds: number): string {
 }
 
 const statConfig = [
-  {
-    key: "totalLeads" as const,
-    label: "Total Leads",
-    icon: Users,
-    format: (v: number) => v.toString(),
-    accent: "var(--color-text)",
-  },
-  {
-    key: "callsMade" as const,
-    label: "Calls Made",
-    icon: PhoneCall,
-    format: (v: number) => v.toString(),
-    accent: "var(--color-amber)",
-  },
-  {
-    key: "qualificationRate" as const,
-    label: "Qualified",
-    icon: TrendingUp,
-    format: (v: number) => `${v}%`,
-    accent: "var(--color-success)",
-  },
-  {
-    key: "avgCallDuration" as const,
-    label: "Avg Duration",
-    icon: Clock,
-    format: (v: number) => formatDuration(v),
-    accent: "var(--color-cold)",
-  },
+  { key: "totalLeads" as const, label: "Total Leads", icon: Users, format: (v: number) => v.toString() },
+  { key: "callsMade" as const, label: "Calls Made", icon: PhoneCall, format: (v: number) => v.toString() },
+  { key: "qualificationRate" as const, label: "Qualified", icon: TrendingUp, format: (v: number) => `${v}%` },
+  { key: "avgCallDuration" as const, label: "Avg Duration", icon: Clock, format: (v: number) => formatDuration(v) },
 ];
 
 export function StatsBar({ stats }: { stats: DashboardStats }) {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-      {statConfig.map(({ key, label, icon: Icon, format, accent }, i) => (
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      {statConfig.map(({ key, label, icon: Icon, format }, i) => (
         <div
           key={key}
-          className="card px-5 py-4 animate-fade-up relative overflow-hidden"
+          className="card px-5 py-[18px] animate-fade-up"
           style={{ animationDelay: `${i * 60}ms` }}
         >
-          {/* Subtle top accent line */}
-          <div
-            className="absolute top-0 left-4 right-4 h-px"
-            style={{ background: `linear-gradient(90deg, transparent, ${accent}30, transparent)` }}
-          />
-          <div className="flex items-center gap-2 mb-2.5">
-            <Icon size={13} style={{ color: accent }} className="opacity-60" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[var(--color-text-muted)]">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-7 h-7 rounded-[8px] bg-[var(--color-surface-inset)] flex items-center justify-center" style={{ boxShadow: "var(--shadow-inset)" }}>
+              <Icon size={13} className="text-[var(--color-text-muted)]" />
+            </div>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[var(--color-text-muted)]">
               {label}
             </span>
           </div>
           <div
-            className="text-[28px] font-normal tracking-tight"
-            style={{ fontFamily: "var(--font-display)", color: accent }}
+            className="text-[26px] font-bold tracking-tight text-[var(--color-text)]"
+            style={{ fontFamily: "var(--font-display)" }}
           >
             {format(stats[key])}
           </div>

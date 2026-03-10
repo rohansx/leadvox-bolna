@@ -22,14 +22,13 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className="min-h-screen">
-        <div className="grain" />
         <Nav />
-        <main className="mx-auto max-w-[1400px] px-6 pb-20">{children}</main>
+        <main className="mx-auto max-w-[1320px] px-6 pb-20">{children}</main>
       </body>
     </html>
   );

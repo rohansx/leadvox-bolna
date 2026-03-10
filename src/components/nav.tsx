@@ -13,27 +13,27 @@ export function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-b border-[var(--color-border-subtle)] backdrop-blur-md bg-[#06060a]/80 sticky top-0 z-50">
-      <div className="mx-auto max-w-[1400px] px-6 flex items-center justify-between h-14">
-        <Link href="/" className="flex items-center gap-3 no-underline group">
-          <div className="relative">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--color-amber)] to-[#d4892a] flex items-center justify-center shadow-[0_2px_12px_var(--color-amber-glow)]">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-[var(--color-bg)]">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
+    <nav className="bg-[var(--color-surface)] border-b border-[var(--color-border-subtle)] sticky top-0 z-50" style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.04)" }}>
+      <div className="mx-auto max-w-[1320px] px-6 flex items-center justify-between h-[56px]">
+        <Link href="/" className="flex items-center gap-2.5 no-underline group">
+          {/* Logo */}
+          <div
+            className="w-8 h-8 rounded-[10px] flex items-center justify-center"
+            style={{
+              background: "linear-gradient(135deg, #d4882f 0%, #b06b1f 100%)",
+              boxShadow: "0 1px 3px rgba(196,122,42,0.3), inset 0 1px 0 rgba(255,255,255,0.2)",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="text-white">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
-          <div className="flex items-baseline gap-1.5">
-            <span
-              className="text-lg tracking-tight text-[var(--color-text)] group-hover:text-[var(--color-amber)] transition-colors"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              LeadVox
-            </span>
-            <span className="text-[9px] font-semibold text-[var(--color-text-muted)] tracking-[0.12em] uppercase">
-              beta
-            </span>
-          </div>
+          <span
+            className="text-[17px] font-bold tracking-tight text-[var(--color-text)] group-hover:text-[var(--color-accent)] transition-colors"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            LeadVox
+          </span>
         </Link>
 
         <div className="flex items-center gap-1">
@@ -43,10 +43,10 @@ export function Nav() {
               <Link
                 key={href}
                 href={href}
-                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-[13px] font-medium no-underline transition-all ${
+                className={`flex items-center gap-2 px-3.5 py-[7px] rounded-[10px] text-[13px] font-medium no-underline transition-all ${
                   active
-                    ? "bg-[var(--color-surface-raised)] text-[var(--color-text)] shadow-sm"
-                    : "text-[var(--color-text-secondary)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface)]"
+                    ? "bg-[var(--color-surface-inset)] text-[var(--color-text)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]"
+                    : "text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface-hover)]"
                 }`}
               >
                 <Icon size={14} strokeWidth={active ? 2.5 : 2} />
@@ -56,7 +56,7 @@ export function Nav() {
           })}
 
           <div className="ml-3 pl-3 border-l border-[var(--color-border-subtle)] flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-success)] pulse-live" />
+            <div className="w-[6px] h-[6px] rounded-full bg-[var(--color-success)] pulse-live" />
             <span className="text-[11px] font-medium text-[var(--color-text-muted)]">Live</span>
           </div>
         </div>

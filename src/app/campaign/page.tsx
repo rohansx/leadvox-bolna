@@ -17,12 +17,12 @@ export default function CampaignPage() {
 
       <div className="mb-8 animate-fade-up">
         <h1
-          className="text-[42px] leading-tight mb-1.5 text-[var(--color-text)]"
+          className="text-[36px] leading-tight mb-1 font-bold text-[var(--color-text)]"
           style={{ fontFamily: "var(--font-display)" }}
         >
           New Campaign
         </h1>
-        <p className="text-sm text-[var(--color-text-muted)]">
+        <p className="text-[13px] text-[var(--color-text-muted)]">
           Upload leads and launch an AI calling campaign
         </p>
       </div>

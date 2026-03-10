@@ -42,10 +42,7 @@ export function CampaignForm() {
 
   const addManual = () => {
     if (!manualName.trim() || !manualPhone.trim()) return;
-    setLeads((prev) => [
-      ...prev,
-      { name: manualName.trim(), phone: manualPhone.trim() },
-    ]);
+    setLeads((prev) => [...prev, { name: manualName.trim(), phone: manualPhone.trim() }]);
     setManualName("");
     setManualPhone("");
   };
@@ -70,9 +67,7 @@ export function CampaignForm() {
         }),
       });
 
-      if (res.ok) {
-        setLaunched(true);
-      }
+      if (res.ok) setLaunched(true);
     } finally {
       setLaunching(false);
     }
@@ -80,30 +75,26 @@ export function CampaignForm() {
 
   if (launched) {
     return (
-      <div className="card p-12 text-center">
-        <div className="w-14 h-14 rounded-full bg-[var(--color-success-bg)] flex items-center justify-center mx-auto mb-4">
+      <div className="p-8 text-center">
+        <div
+          className="w-14 h-14 rounded-2xl bg-[var(--color-success-light)] border border-[var(--color-success-border)] flex items-center justify-center mx-auto mb-4"
+          style={{ boxShadow: "inset 0 1px 0 rgba(255,255,255,0.5)" }}
+        >
           <Rocket size={24} className="text-[var(--color-success)]" />
         </div>
-        <h2
-          className="text-2xl mb-2 text-[var(--color-text)]"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
+        <h2 className="text-[22px] font-bold mb-2 text-[var(--color-text)]" style={{ fontFamily: "var(--font-display)" }}>
           Campaign Launched
         </h2>
-        <p className="text-sm text-[var(--color-text-secondary)] mb-6">
-          {leads.length} leads are being called. Check the dashboard for
-          real-time updates.
+        <p className="text-[13px] text-[var(--color-text-secondary)] mb-6">
+          {leads.length} leads are being called. Check the dashboard for real-time updates.
         </p>
-        <a href="/" className="btn-primary inline-block no-underline">
-          Go to Dashboard
-        </a>
+        <a href="/" className="btn-primary inline-block no-underline">Go to Dashboard</a>
       </div>
     );
   }
 
   return (
-    <div className="space-y-8">
-      {/* Campaign Name */}
+    <div className="space-y-7">
       <div>
         <label className="label">Campaign Name</label>
         <input
@@ -115,53 +106,29 @@ export function CampaignForm() {
         />
       </div>
 
-      {/* CSV Upload */}
       <div>
         <label className="label">Upload Leads (CSV)</label>
         <p className="text-xs text-[var(--color-text-muted)] mb-3">
-          CSV should have <code className="text-[var(--color-amber)] bg-[var(--color-amber-glow)] px-1 rounded">name</code> and{" "}
-          <code className="text-[var(--color-amber)] bg-[var(--color-amber-glow)] px-1 rounded">phone</code> columns
+          CSV should have <code className="text-[var(--color-accent)] bg-[var(--color-accent-glow)] px-1.5 py-0.5 rounded-md text-[11px] font-semibold" style={{ fontFamily: "var(--font-mono)" }}>name</code> and{" "}
+          <code className="text-[var(--color-accent)] bg-[var(--color-accent-glow)] px-1.5 py-0.5 rounded-md text-[11px] font-semibold" style={{ fontFamily: "var(--font-mono)" }}>phone</code> columns
         </p>
-        <label className="card-raised border-dashed border-[var(--color-border)] p-8 flex flex-col items-center gap-3 cursor-pointer hover:border-[var(--color-amber-dim)] transition-colors">
-          <FileSpreadsheet
-            size={28}
-            className="text-[var(--color-text-muted)]"
-          />
-          <span className="text-sm text-[var(--color-text-secondary)]">
-            Drop a CSV or click to browse
-          </span>
-          <input
-            type="file"
-            accept=".csv"
-            className="hidden"
-            onChange={handleCSV}
-          />
+        <label
+          className="card-inset border-dashed border-[var(--color-border)] p-8 flex flex-col items-center gap-3 cursor-pointer hover:border-[var(--color-accent)] transition-colors rounded-2xl"
+        >
+          <FileSpreadsheet size={28} className="text-[var(--color-text-muted)]" />
+          <span className="text-[13px] text-[var(--color-text-secondary)]">Drop a CSV or click to browse</span>
+          <input type="file" accept=".csv" className="hidden" onChange={handleCSV} />
         </label>
       </div>
 
-      {/* Manual Entry */}
       <div>
         <label className="label">Or Add Manually</label>
         <div className="flex gap-3 items-end">
           <div className="flex-1">
-            <input
-              type="text"
-              className="input"
-              placeholder="Name"
-              value={manualName}
-              onChange={(e) => setManualName(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addManual()}
-            />
+            <input type="text" className="input" placeholder="Name" value={manualName} onChange={(e) => setManualName(e.target.value)} onKeyDown={(e) => e.key === "Enter" && addManual()} />
           </div>
           <div className="flex-1">
-            <input
-              type="text"
-              className="input"
-              placeholder="Phone (+91...)"
-              value={manualPhone}
-              onChange={(e) => setManualPhone(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addManual()}
-            />
+            <input type="text" className="input" placeholder="Phone (+91...)" value={manualPhone} onChange={(e) => setManualPhone(e.target.value)} onKeyDown={(e) => e.key === "Enter" && addManual()} />
           </div>
           <button onClick={addManual} className="btn-secondary flex items-center gap-1.5">
             <Plus size={14} />
@@ -170,30 +137,17 @@ export function CampaignForm() {
         </div>
       </div>
 
-      {/* Lead List */}
       {leads.length > 0 && (
         <div>
-          <label className="label">
-            Leads ({leads.length})
-          </label>
-          <div className="card-raised divide-y divide-[var(--color-border-subtle)] max-h-64 overflow-y-auto">
+          <label className="label">Leads ({leads.length})</label>
+          <div className="card-raised divide-y divide-[var(--color-border-subtle)] max-h-64 overflow-y-auto rounded-xl">
             {leads.map((lead, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between px-4 py-2.5"
-              >
+              <div key={i} className="flex items-center justify-between px-4 py-2.5">
                 <div className="flex items-center gap-4">
-                  <span className="text-sm font-medium text-[var(--color-text)]">
-                    {lead.name}
-                  </span>
-                  <span className="text-xs font-mono text-[var(--color-text-muted)]">
-                    {lead.phone}
-                  </span>
+                  <span className="text-sm font-medium text-[var(--color-text)]">{lead.name}</span>
+                  <span className="text-xs text-[var(--color-text-muted)]" style={{ fontFamily: "var(--font-mono)" }}>{lead.phone}</span>
                 </div>
-                <button
-                  onClick={() => removeLead(i)}
-                  className="text-[var(--color-text-muted)] hover:text-[var(--color-hot)] transition-colors p-1"
-                >
+                <button onClick={() => removeLead(i)} className="text-[var(--color-text-muted)] hover:text-[var(--color-hot)] transition-colors p-1">
                   <X size={14} />
                 </button>
               </div>
@@ -202,32 +156,20 @@ export function CampaignForm() {
         </div>
       )}
 
-      {/* Calling Window */}
       <div>
         <label className="label">Calling Window</label>
         <div className="flex items-center gap-3">
-          <input
-            type="time"
-            className="input w-36"
-            value={windowStart}
-            onChange={(e) => setWindowStart(e.target.value)}
-          />
+          <input type="time" className="input w-36" value={windowStart} onChange={(e) => setWindowStart(e.target.value)} />
           <span className="text-sm text-[var(--color-text-muted)]">to</span>
-          <input
-            type="time"
-            className="input w-36"
-            value={windowEnd}
-            onChange={(e) => setWindowEnd(e.target.value)}
-          />
+          <input type="time" className="input w-36" value={windowEnd} onChange={(e) => setWindowEnd(e.target.value)} />
         </div>
       </div>
 
-      {/* Launch */}
       <div className="pt-4 border-t border-[var(--color-border-subtle)]">
         <button
           onClick={launch}
           disabled={leads.length === 0 || !campaignName.trim() || launching}
-          className="btn-primary flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none"
+          className="btn-primary flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
         >
           <Upload size={15} />
           {launching ? "Launching..." : `Launch Campaign (${leads.length} leads)`}
