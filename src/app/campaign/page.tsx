@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function CampaignPage() {
   return (
-    <div className="max-w-2xl pt-8">
+    <div className="max-w-3xl mx-auto pt-8">
       <Link
         href="/"
         className="inline-flex items-center gap-1.5 text-[13px] text-[var(--color-text-muted)] hover:text-[var(--color-text)] no-underline mb-6 transition-colors"

@@ -29,6 +29,16 @@ export default function RootLayout({
       <body className="min-h-screen">
         <Nav />
         <main className="mx-auto max-w-[1320px] px-6 pb-20">{children}</main>
+        <footer className="border-t border-[var(--color-border-subtle)] py-5 text-center text-[12px] text-[var(--color-text-muted)]">
+          Built by{" "}
+          <a href="https://rohan.sh" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors no-underline">
+            Rohan
+          </a>
+          {" "}using{" "}
+          <a href="https://bolna.ai" target="_blank" rel="noopener noreferrer" className="font-medium text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors no-underline">
+            Bolna AI
+          </a>
+        </footer>
       </body>
     </html>
   );
